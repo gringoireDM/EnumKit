@@ -38,7 +38,7 @@ enum MyError: CaseAccessible, Error {
 
 The second way to access an enum associated value is to optionally extract it when the instance is matching a specific case, using the `associatedValue(matching:)` function:
 
-```
+```swift
 let myError: MyError
 let errorMessage = myError.associatedValue(matching: MyError.noConnection) // String?
 // or with subscript
@@ -49,7 +49,7 @@ let errorMessage = myError[case: MyError.noConnection] // String?
 
 EnumKit provides utilities functions for case matching. 
 
-```
+```swift
 // is matching
 
 let isConnectionIssue = myError.matches(case: MyError.noConnection)
