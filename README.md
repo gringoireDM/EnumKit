@@ -1,8 +1,14 @@
 # EnumKit
 
-How to access an associated value of an enum case is a very recurring question on stackOverflow.
+`EnumKit` is a library that gives you the ability to simply access an enum associated value, without having to use pattern matching. It also offers many utilities available to other swift types, like updatability of an associated value and transformations. 
 
-`EnumKit` gives you the ability to simply access an enum value without having to use pattern matching.
+`EnumKit` comes with an extension of `Sequence` to extend functions like `compactMap`, `flatMap`, `filter` to Sequences of enums cases.
+
+All you need to do to get these features is to declare your enum conformant to the marker protocol `CaseAccessible`.
+
+```swift
+enum MyEnum: CaseAccessible { ... }
+```
 
 ### Index
   * [Access an associated value](#access-an-associated-value)
