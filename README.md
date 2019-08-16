@@ -5,10 +5,10 @@ How to access an associated value of an enum case is a very recurring question o
 `EnumKit` gives you the ability to simply access an enum value without having to use pattern matching.
 
 ### Index
-    * [Access an associated value](#access-an-associated-value)
-    * [Matching cases](#matching-cases)
-    * [Updatathing an enum value](#updatathing-an-enum-value)
-    * [Transform associated values](#transform-associated-values)
+  * [Access an associated value](#access-an-associated-value)
+  * [Matching cases](#matching-cases)
+  * [Updatathing an enum value](#updatathing-an-enum-value)
+  * [Transform associated values](#transform-associated-values)
     
 ## Access an associated value
 
