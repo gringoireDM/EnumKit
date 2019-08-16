@@ -32,7 +32,6 @@ playground.xcworkspace
 .DS_Store
 /.build
 /Packages
-/*.xcodeproj
 
 Carthage/Build
 
