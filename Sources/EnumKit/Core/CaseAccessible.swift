@@ -7,6 +7,9 @@
 
 import Foundation
 
+infix operator ~=
+infix operator !~=
+
 public protocol CaseAccessible { }
 public extension CaseAccessible {
     /// returns the label of the enum case
@@ -21,8 +24,32 @@ public extension CaseAccessible {
     }
     
     /// check if an enum case matches a specific pattern
-    func matches<Payload>(case pattern: (Payload) -> Self) -> Bool {
+    func matches<AssociatedValue>(case pattern: (AssociatedValue) -> Self) -> Bool {
         return associatedValue(matching: pattern) != nil
+    }
+    
+    func isNotMatching(case: Self) -> Bool {
+        return !matches(case: `case`)
+    }
+    
+    func isNotMatching<AssociatedValue>(case pattern: (AssociatedValue) -> Self) -> Bool {
+        return !matches(case: pattern)
+    }
+    
+    static func ~=<AssociatedValue>(case: Self, pattern: (AssociatedValue) -> Self) -> Bool {
+        return `case`.matches(case: pattern)
+    }
+    
+    static func ~=(case: Self, other: Self) -> Bool {
+        return `case`.matches(case: other)
+    }
+
+    static func !~=<AssociatedValue>(case: Self, pattern: (AssociatedValue) -> Self) -> Bool {
+        return `case`.isNotMatching(case: pattern)
+    }
+    
+    static func !~=(case: Self, other: Self) -> Bool {
+        return `case`.isNotMatching(case: other)
     }
     
     /// Extract an associated value of the enum case if it is of the expected type
@@ -45,6 +72,12 @@ public extension CaseAccessible {
     mutating func update<AssociatedValue>(value: AssociatedValue, matching pattern: (AssociatedValue) -> Self) {
         guard associatedValue(matching: pattern) != nil else { return }
         self = pattern(value)
+    }
+    
+    subscript<AssociatedValue>(expecting: AssociatedValue.Type) -> AssociatedValue? {
+        get {
+            return associatedValue()
+        }
     }
     
     subscript<AssociatedValue>(case pattern: (AssociatedValue) -> Self) -> AssociatedValue? {
