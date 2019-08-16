@@ -1,6 +1,8 @@
 [![Swift Package Manager](https://img.shields.io/badge/swiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager) ![swfit5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
 
-# EnumKit
+<p align="center">
+<img src="./enumKit.png" alt="EnumKit"/>
+</p>
 
 `EnumKit` is a library that gives you the ability to simply access an enum associated value, without having to use pattern matching. It also offers many utilities available to other swift types, like updatability of an associated value and transformations. 
 
