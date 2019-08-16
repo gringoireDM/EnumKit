@@ -7,8 +7,7 @@
 
 import Foundation
 
-infix operator ~=
-infix operator !~=
+infix operator !~= : AdditionPrecedence
 
 public protocol CaseAccessible { }
 public extension CaseAccessible {
@@ -74,7 +73,7 @@ public extension CaseAccessible {
         self = pattern(value)
     }
     
-    subscript<AssociatedValue>(expecting: AssociatedValue.Type) -> AssociatedValue? {
+    subscript<AssociatedValue>(expecting type: AssociatedValue.Type) -> AssociatedValue? {
         get {
             return associatedValue()
         }
