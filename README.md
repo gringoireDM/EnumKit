@@ -1,4 +1,4 @@
-[![Swift Package Manager](https://img.shields.io/badge/swiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager)
+[![Swift Package Manager](https://img.shields.io/badge/swiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager) ![swfit5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
 
 # EnumKit
 
