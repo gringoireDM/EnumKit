@@ -1,0 +1,9 @@
+os: osx
+language: objective-c
+osx_image: xcode10.2
+xcode_project: ./EnumKit.xcodeproj
+xcode_scheme: EnumKit-Package
+xcode_destination: platform=iOS Simulator,OS=11.4,name=iPhone X
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
