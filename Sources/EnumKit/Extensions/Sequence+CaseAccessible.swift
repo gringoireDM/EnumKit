@@ -7,16 +7,28 @@
 
 import Foundation
 
-extension Sequence where Element: CaseAccessible {
+public extension Sequence where Element: CaseAccessible {
+    func filter(case: Element) -> [Element] {
+        return filter {
+            $0 ~= `case`
+        }
+    }
+    
     func filter<AssociatedValue>(case pattern: (AssociatedValue) -> Element) -> [Element] {
         return filter {
-            $0[case: pattern] != nil
+            $0 ~= pattern
+        }
+    }
+    
+    func exclude(case: Element) -> [Element] {
+        return filter {
+            $0 !~= `case`
         }
     }
     
     func exclude<AssociatedValue>(case pattern: (AssociatedValue) -> Element) -> [Element] {
         return filter {
-            $0[case: pattern] == nil
+            $0 !~= pattern
         }
     }
     
@@ -27,8 +39,8 @@ extension Sequence where Element: CaseAccessible {
     }
     
     func compactMap<AssociatedValue, T>(case pattern: (AssociatedValue) -> Element,
-                                        _ transform: (AssociatedValue) throws -> T) rethrows -> [T] {
-        return try compactMap { try $0.map(case: pattern, transform) }
+                                        _ transform: (AssociatedValue) throws -> T?) rethrows -> [T] {
+        return try compactMap { try $0.flatMap(case: pattern, transform) }
     }
     
     func associatedValues<AssociatedValue>(case pattern: (AssociatedValue) -> Element) -> [AssociatedValue] {

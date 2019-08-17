@@ -8,10 +8,12 @@
 import Foundation
 import EnumKit
 
-enum MockEnum: CaseAccessible {
+enum MockEnum: CaseAccessible, Equatable {
     case noAssociatedValue
     case anotherWithoutAssociatedValue
     case withAnonymousPayload(String)
     case withNamedPayload(payload: String)
     case anInt(Int)
+    case anotherInt(Int)
+    case namedInt(integer: Int)
 }
