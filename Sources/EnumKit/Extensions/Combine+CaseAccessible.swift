@@ -1,5 +1,5 @@
 //
-//  combine+CaseAccessible.swift
+//  Combine+CaseAccessible.swift
 //  EnumKit
 //
 //  Created by Giuseppe Lanza on 17/08/2019.
@@ -46,6 +46,33 @@ public extension Publisher where Output: CaseAccessible {
             guard let value = $0[case: pattern] else { return nil }
             return transorm(value)
         }
+    }
+    
+    func flatMap<T, P : Publisher>(case: Output,
+                                   maxPublishers: Subscribers.Demand = .unlimited,
+                                   _ transform: @escaping () -> P) -> Publishers.FlatMap<P, Publishers.CompactMap<Self, Void>>
+        where T == P.Output , Failure == P.Failure {
+            return capture(case: `case`)
+                .flatMap(maxPublishers: maxPublishers, transform)
+    }
+    
+    func flatMap<T, P : Publisher, AssociatedValue>(case pattern: @escaping (AssociatedValue) -> Output,
+                                                    maxPublishers: Subscribers.Demand = .unlimited,
+                                                    _ transform: @escaping (AssociatedValue) -> P) -> Publishers.FlatMap<P, Publishers.CompactMap<Self, AssociatedValue>>
+        where T == P.Output , Failure == P.Failure {
+            return capture(case: pattern)
+                .flatMap(maxPublishers: maxPublishers, transform)
+    }
+}
+
+@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public extension Publisher {
+    func map<T: CaseAccessible>(toCase case: T) -> Publishers.Map<Self, T> {
+        return map { _ in `case` }
+    }
+    
+    func map<T: CaseAccessible>(toCase pattern: @escaping (Output) -> T) -> Publishers.Map<Self, T> {
+        return map(pattern)
     }
 }
 
