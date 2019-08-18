@@ -54,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		505B57832307EF97002366BD /* CaseAccessibleSequenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseAccessibleSequenceTests.swift; sourceTree = "<group>"; };
+		50D56F7623093FF300E0C6B4 /* EnumKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = EnumKit.podspec; sourceTree = "<group>"; };
 		"EnumKit::EnumKit::Product" /* EnumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnumKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"EnumKit::EnumKitTests::Product" /* EnumKitTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnumKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* CaseAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseAccessible.swift; sourceTree = "<group>"; };
@@ -139,9 +140,10 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
+				50D56F7623093FF300E0C6B4 /* EnumKit.podspec */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_13 /* Tests */,
@@ -150,7 +152,6 @@
 				OBJ_27 /* README.md */,
 				OBJ_28 /* enumKit.png */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -246,7 +247,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_23 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
