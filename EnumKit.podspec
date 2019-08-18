@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   	s.description  = <<-DESC
                    EnumKit is a library that gives you the ability to simply access an enum associated value, without having to use pattern matching. It also offers many utilities available to other swift types, like updatability of an associated value and transformations.
                    
-                   EnumKit comes with an extension of `Sequence` to extend functions like `compactMap`, `flatMap`, `filter` to Sequences of enums cases.
+                   EnumKit comes with an extension of Sequence to extend functions like compactMap, flatMap, filter to Sequences of enums cases.
                    DESC
                    
     s.requires_arc = true
@@ -20,8 +20,8 @@ Pod::Spec.new do |s|
     s.author = { "Giuseppe Lanza" => "gringoire986@gmail.com" }
 
     s.source = {
-        :git => "git@github.com:gringoireDM/EnumKit.git",
-        :tag => "1.0.0"
+        :git => "https://github.com/gringoireDM/EnumKit.git",
+        :tag => s.version.to_s
     }
     
     s.source_files = "Sources/**/*.swift"
