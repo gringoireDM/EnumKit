@@ -11,46 +11,52 @@ infix operator !~= : AdditionPrecedence
 
 public protocol CaseAccessible { }
 public extension CaseAccessible {
-    /// returns the label of the enum case
+    /// Returns the label of the enum case
     var label: String {
         return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
     }
     
-    /// check if an enum case matches another case
+    /// Check if an enum case matches another case
     func matches(case: Self) -> Bool {
         let targetStr = `case`.label
         return label == targetStr
     }
     
-    /// check if an enum case matches a specific pattern
+    /// Check if an enum case matches a specific pattern
     func matches<AssociatedValue>(case pattern: (AssociatedValue) -> Self) -> Bool {
         return associatedValue(matching: pattern) != nil
     }
     
+    /// Check if an enum case is not matching another case
     func isNotMatching(case: Self) -> Bool {
         return !matches(case: `case`)
     }
     
+    /// Check if an enum case is not matching a specific pattern
     func isNotMatching<AssociatedValue>(case pattern: (AssociatedValue) -> Self) -> Bool {
         return !matches(case: pattern)
     }
     
-    static func ~=<AssociatedValue>(case: Self, pattern: (AssociatedValue) -> Self) -> Bool {
-        return `case`.matches(case: pattern)
-    }
-    
+    /// Check if an enum case matches another case
     static func ~=(case: Self, other: Self) -> Bool {
         return `case`.matches(case: other)
     }
 
-    static func !~=<AssociatedValue>(case: Self, pattern: (AssociatedValue) -> Self) -> Bool {
-        return `case`.isNotMatching(case: pattern)
+    /// Check if an enum case matches a specific pattern
+    static func ~=<AssociatedValue>(case: Self, pattern: (AssociatedValue) -> Self) -> Bool {
+        return `case`.matches(case: pattern)
     }
-    
+
+    /// Check if an enum case is not matching another case
     static func !~=(case: Self, other: Self) -> Bool {
         return `case`.isNotMatching(case: other)
     }
-    
+
+    /// Check if an enum case is not matching a specific pattern
+    static func !~=<AssociatedValue>(case: Self, pattern: (AssociatedValue) -> Self) -> Bool {
+        return `case`.isNotMatching(case: pattern)
+    }
+        
     /// Extract an associated value of the enum case if it is of the expected type
     func associatedValue<AssociatedValue>() -> AssociatedValue? {
         return decompose()?.value
@@ -97,7 +103,7 @@ public extension CaseAccessible {
     }
     
     /// Map the associated value of the enum case to another type, if the case match a specific pattern.
-    /// - parameter pattern: The pattern to be matched extract the value to be transformed
+    /// - parameter pattern: The pattern to be matched to extract the value to be transformed
     /// - parameter transform: The transformation to be executed on values of cases matching pattern
     /// - returns: The transformed value if the enum case was matching the pattern, or nil.
     func map<AssociatedValue, T>(case pattern: (AssociatedValue) -> Self, _ transform: (AssociatedValue) throws -> T) rethrows -> T? {
@@ -106,12 +112,34 @@ public extension CaseAccessible {
     }
     
     /// Map the associated value of the enum case to another type, if the case match a specific pattern.
-    /// - parameter pattern: The pattern to be matched extract the value to be transformed
+    /// - parameter pattern: The pattern to be matched to extract the value to be transformed
     /// - parameter transform: The transformation to be executed on values of cases matching pattern
     /// - returns: The transformed value if the enum case was matching the pattern, or nil.
     func flatMap<AssociatedValue, T>(case pattern: (AssociatedValue) -> Self, _ transform: (AssociatedValue) throws -> T?) rethrows -> T? {
         guard let value = associatedValue(matching: pattern) else { return nil }
         return try transform(value)
+    }
+    
+    /// Do something when the enum matches a specific case. Can be chained with other `do`.
+    /// - parameter case: The case to be matched
+    /// - parameter execute: The block to be executed if the case match the pattern
+    /// - returns: self
+    @discardableResult
+    func `do`(onCase case: Self, _ execute: () throws -> Void) rethrows -> Self {
+        guard self ~= `case` else { return self }
+        try execute()
+        return self
+    }
+    
+    /// Do something when the enum matches a specific pattern. Can be chained with other `do`.
+    /// - parameter pattern: The pattern to be matched
+    /// - parameter execute: The block to be executed if the case match the pattern
+    /// - returns: self
+    @discardableResult
+    func `do`<AssociatedValue>(onCase pattern: (AssociatedValue) -> Self, _ execute: (AssociatedValue) throws -> Void) rethrows -> Self {
+        guard let value = associatedValue(matching: pattern) else { return self }
+        try execute(value)
+        return self
     }
 }
 
