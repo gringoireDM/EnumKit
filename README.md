@@ -79,3 +79,8 @@ let package = Package(
 ```bash
 $ swift build
 ```
+
+# External Resources
+
+- [RxEnumKit](https://github.com/gringoireDM/RxEnumKit): Extension for RxSwift Observables and SharedSequences to work with Streams of enum cases.
+- [Swift Enums, Mind the Gap: EnumKit to the Rescue](https://medium.com/better-programming/swift-enums-mind-the-gap-3573378d2d9f): Medium article on EnumKit and RxEnumKit
