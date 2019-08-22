@@ -66,7 +66,7 @@ Create a `Package.swift` file.
 import PackageDescription
 
 let package = Package(
-  name: "RxTestProject",
+  name: "YourProjectName",
   dependencies: [
     .package(url: "https://github.com/gringoireDM/EnumKit.git", from: "1.0.0")
   ],
