@@ -28,3 +28,54 @@ enum MyEnum: CaseAccessible { ... }
 ```
 
 For more please read our [wiki](https://github.com/gringoireDM/EnumKit/wiki).
+
+## Requirements
+
+* Xcode 10.2
+* Swift 5.0
+
+
+## Installation
+
+EnumKit offers [cocoapods](https://cocoapods.org) and [swiftPM](https://swift.org/package-manager)
+
+### Via Cocoapods
+
+```ruby
+# Podfile
+use_frameworks!
+
+target 'YOUR_TARGET_NAME' do
+    pod 'EnumKit', '~> 1.0.0'
+end
+```
+
+Replace `YOUR_TARGET_NAME` and then, in the `Podfile` directory, type:
+
+```bash
+$ pod install
+```
+
+### via Swift Package Manager
+
+Create a `Package.swift` file.
+
+```swift
+// swift-tools-version:5.0
+
+import PackageDescription
+
+let package = Package(
+  name: "RxTestProject",
+  dependencies: [
+    .package(url: "https://github.com/gringoireDM/EnumKit.git", from: "1.0.0")
+  ],
+  targets: [
+    .target(name: "YourProjectName", dependencies: ["EnumKit"])
+  ]
+)
+```
+
+```bash
+$ swift build
+```
