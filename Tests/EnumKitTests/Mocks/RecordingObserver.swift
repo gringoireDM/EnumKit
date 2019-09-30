@@ -19,7 +19,7 @@ enum CombineEvents<Input, Failure> where Failure : Error {
 extension CombineEvents: Equatable
     where Input: Equatable, Failure: Equatable { }
 
-@available(iOS 13.0, *)
+@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 final class RecordingObserver<Input, Failure>: Subscriber, Cancellable where Failure : Error {
     var subscription: Subscription?
     var events = [CombineEvents<Input, Failure>]()
@@ -55,7 +55,7 @@ final class RecordingObserver<Input, Failure>: Subscriber, Cancellable where Fai
     func cancel() { subscription?.cancel() }
 }
 
-@available(iOS 13.0, *)
+@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
     func record(receiveCompletion: @escaping ((Subscribers.Completion<Failure>) -> Void) = { _ in },
                 receiveValue: @escaping ((Output) -> Void) = { _ in }) -> RecordingObserver<Output, Failure> {

@@ -25,8 +25,8 @@ class CombineCaptureTests: XCTestCase {
     ]
     
     func testItCanCaptureAnonymousAssociatedValueEvents() {
-        guard #available(iOS 13.0, *) else { return }
-        
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
+
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .capture(case: MockEnum.withAnonymousPayload)
@@ -45,8 +45,8 @@ class CombineCaptureTests: XCTestCase {
     }
     
     func testItCanCaptureNamedAssociatedValueEvents() {
-        guard #available(iOS 13.0, *) else { return }
-        
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
+
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .capture(case: MockEnum.withNamedPayload)
@@ -64,8 +64,8 @@ class CombineCaptureTests: XCTestCase {
 
     
     func testItCanCaptureNoAssociatedValueEvents() {
-        guard #available(iOS 13.0, *) else { return }
-        
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
+
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .capture(case: MockEnum.noAssociatedValue)

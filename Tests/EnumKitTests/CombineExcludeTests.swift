@@ -24,7 +24,7 @@ class CombineExcludeTests: XCTestCase {
     ]
     
     func testItCanExcludeNoAssociatedValueEvents() {
-        guard #available(iOS 13.0, *) else { return }
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
         
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
@@ -43,8 +43,8 @@ class CombineExcludeTests: XCTestCase {
     }
     
     func testItCanExcludeEventsWithAnonymousAssociatedValue() {
-        guard #available(iOS 13.0, *) else { return }
-        
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
+
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .exclude(case: MockEnum.withAnonymousPayload)
@@ -65,8 +65,8 @@ class CombineExcludeTests: XCTestCase {
 
     
     func testItCanExcludeEventsWithNamedAssociatedValue() {
-        guard #available(iOS 13.0, *) else { return }
-        
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
+
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .exclude(case: MockEnum.withNamedPayload)

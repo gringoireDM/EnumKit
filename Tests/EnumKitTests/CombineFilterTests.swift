@@ -24,8 +24,8 @@ class CombineFilterTests: XCTestCase {
     ]
     
     func testItCanFilterAnonymousEvents() {
-        guard #available(iOS 13.0, *) else { return }
-        
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
+
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .filter(case: MockEnum.withAnonymousPayload)
@@ -44,8 +44,8 @@ class CombineFilterTests: XCTestCase {
     }
     
     func testItCanFilterNamedEvents() {
-        guard #available(iOS 13.0, *) else { return }
-        
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
+
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .filter(case: MockEnum.withNamedPayload)
@@ -62,8 +62,8 @@ class CombineFilterTests: XCTestCase {
     }
 
     func testItCanFilterNoAssociatedValueEvents() {
-        guard #available(iOS 13.0, *) else { return }
-        
+        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
+
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .filter(case: MockEnum.noAssociatedValue)
