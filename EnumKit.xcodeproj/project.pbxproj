@@ -22,6 +22,10 @@
 
 /* Begin PBXBuildFile section */
 		50876947234115F000CC398C /* RecordingObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50876945234115DD00CC398C /* RecordingObserver.swift */; };
+		5087694B234131E700CC398C /* CombineFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087694A234131E700CC398C /* CombineFilterTests.swift */; };
+		5087694D23413C0600CC398C /* CombineExcludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087694C23413C0600CC398C /* CombineExcludeTests.swift */; };
+		5087694F23413F2200CC398C /* CombineCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087694E23413F2200CC398C /* CombineCaptureTests.swift */; };
+		5087695123414B4D00CC398C /* CombineMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087695023414B4D00CC398C /* CombineMapTests.swift */; };
 		OBJ_38 /* CaseAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* CaseAccessible.swift */; };
 		OBJ_39 /* Combine+CaseAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Combine+CaseAccessible.swift */; };
 		OBJ_40 /* Sequence+CaseAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Sequence+CaseAccessible.swift */; };
@@ -56,7 +60,11 @@
 
 /* Begin PBXFileReference section */
 		50876945234115DD00CC398C /* RecordingObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingObserver.swift; sourceTree = "<group>"; };
-		"EnumKit::EnumKit::Product" /* EnumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnumKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5087694A234131E700CC398C /* CombineFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineFilterTests.swift; sourceTree = "<group>"; };
+		5087694C23413C0600CC398C /* CombineExcludeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExcludeTests.swift; sourceTree = "<group>"; };
+		5087694E23413F2200CC398C /* CombineCaptureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineCaptureTests.swift; sourceTree = "<group>"; };
+		5087695023414B4D00CC398C /* CombineMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineMapTests.swift; sourceTree = "<group>"; };
+		"EnumKit::EnumKit::Product" /* EnumKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EnumKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"EnumKit::EnumKitTests::Product" /* EnumKitTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnumKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* CaseAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseAccessible.swift; sourceTree = "<group>"; };
 		OBJ_12 /* Combine+CaseAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+CaseAccessible.swift"; sourceTree = "<group>"; };
@@ -122,6 +130,10 @@
 				OBJ_19 /* CaseAccessiblePatternExtractionTests.swift */,
 				OBJ_20 /* CaseAccessibleSequenceTests.swift */,
 				OBJ_21 /* CaseAccessibleUpdateTests.swift */,
+				5087694A234131E700CC398C /* CombineFilterTests.swift */,
+				5087694C23413C0600CC398C /* CombineExcludeTests.swift */,
+				5087694E23413F2200CC398C /* CombineCaptureTests.swift */,
+				5087695023414B4D00CC398C /* CombineMapTests.swift */,
 				OBJ_22 /* Mocks */,
 				OBJ_24 /* XCTestManifests.swift */,
 			);
@@ -292,11 +304,15 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_58 /* CaseAccessibleExtractionTests.swift in Sources */,
+				5087694D23413C0600CC398C /* CombineExcludeTests.swift in Sources */,
 				OBJ_59 /* CaseAccessibleLabelsTests.swift in Sources */,
 				OBJ_60 /* CaseAccessibleMatchingTests.swift in Sources */,
 				OBJ_61 /* CaseAccessiblePatternExtractionTests.swift in Sources */,
+				5087695123414B4D00CC398C /* CombineMapTests.swift in Sources */,
 				OBJ_62 /* CaseAccessibleSequenceTests.swift in Sources */,
 				50876947234115F000CC398C /* RecordingObserver.swift in Sources */,
+				5087694B234131E700CC398C /* CombineFilterTests.swift in Sources */,
+				5087694F23413F2200CC398C /* CombineCaptureTests.swift in Sources */,
 				OBJ_63 /* CaseAccessibleUpdateTests.swift in Sources */,
 				OBJ_64 /* MockCaseAccessible.swift in Sources */,
 				OBJ_65 /* XCTestManifests.swift in Sources */,
@@ -359,6 +375,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -387,6 +404,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";

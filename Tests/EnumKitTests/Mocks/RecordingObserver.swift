@@ -16,6 +16,9 @@ enum CombineEvents<Input, Failure> where Failure : Error {
     case completed
 }
 
+extension CombineEvents: Equatable
+    where Input: Equatable, Failure: Equatable { }
+
 @available(iOS 13.0, *)
 final class RecordingObserver<Input, Failure>: Subscriber, Cancellable where Failure : Error {
     var subscription: Subscription?
@@ -54,13 +57,13 @@ final class RecordingObserver<Input, Failure>: Subscriber, Cancellable where Fai
 
 @available(iOS 13.0, *)
 extension Publisher {
-    public func record(receiveCompletion: @escaping ((Subscribers.Completion<Self.Failure>) -> Void) = { _ in },
-                       receiveValue: @escaping ((Self.Output) -> Void)) -> AnyCancellable {
+    func record(receiveCompletion: @escaping ((Subscribers.Completion<Failure>) -> Void) = { _ in },
+                receiveValue: @escaping ((Output) -> Void) = { _ in }) -> RecordingObserver<Output, Failure> {
         let recordingObs = RecordingObserver(receiveValue: receiveValue, receiveCompletion: receiveCompletion)
         
         subscribe(on: ImmediateScheduler.shared).subscribe(recordingObs)
         
-        return AnyCancellable(recordingObs)
+        return recordingObs
     }
 }
 
