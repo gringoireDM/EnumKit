@@ -26,6 +26,7 @@
 		5087694D23413C0600CC398C /* CombineExcludeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087694C23413C0600CC398C /* CombineExcludeTests.swift */; };
 		5087694F23413F2200CC398C /* CombineCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087694E23413F2200CC398C /* CombineCaptureTests.swift */; };
 		5087695123414B4D00CC398C /* CombineMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087695023414B4D00CC398C /* CombineMapTests.swift */; };
+		50876954234280EE00CC398C /* CapturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50876952234280AF00CC398C /* CapturePublisher.swift */; };
 		OBJ_38 /* CaseAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* CaseAccessible.swift */; };
 		OBJ_39 /* Combine+CaseAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Combine+CaseAccessible.swift */; };
 		OBJ_40 /* Sequence+CaseAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Sequence+CaseAccessible.swift */; };
@@ -64,6 +65,7 @@
 		5087694C23413C0600CC398C /* CombineExcludeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExcludeTests.swift; sourceTree = "<group>"; };
 		5087694E23413F2200CC398C /* CombineCaptureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineCaptureTests.swift; sourceTree = "<group>"; };
 		5087695023414B4D00CC398C /* CombineMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineMapTests.swift; sourceTree = "<group>"; };
+		50876952234280AF00CC398C /* CapturePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePublisher.swift; sourceTree = "<group>"; };
 		"EnumKit::EnumKit::Product" /* EnumKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EnumKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"EnumKit::EnumKitTests::Product" /* EnumKitTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnumKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* CaseAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseAccessible.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		OBJ_11 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				50876952234280AF00CC398C /* CapturePublisher.swift */,
 				OBJ_12 /* Combine+CaseAccessible.swift */,
 				OBJ_13 /* Sequence+CaseAccessible.swift */,
 			);
@@ -288,6 +291,7 @@
 				OBJ_38 /* CaseAccessible.swift in Sources */,
 				OBJ_39 /* Combine+CaseAccessible.swift in Sources */,
 				OBJ_40 /* Sequence+CaseAccessible.swift in Sources */,
+				50876954234280EE00CC398C /* CapturePublisher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
