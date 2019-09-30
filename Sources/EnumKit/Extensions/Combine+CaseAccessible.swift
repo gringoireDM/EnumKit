@@ -39,7 +39,7 @@ public extension Publisher where Output: CaseAccessible {
         return filter { $0 !~= pattern }
     }
     
-    /// Projects each matching enum case of a Publisher into its associated value.
+    /// Projects each matching enum case of a Publisher into Void.
     /// - parameter case: An enum case to test each source element for a matching condition.
     /// - returns: A publisher that republishes all matching results of case.
     func capture(case: Output) -> Publishers.Capture<Self, Void> {
@@ -140,7 +140,7 @@ public extension Publisher where Output == CaseAccessible {
         return to(type: T.self).exclude(case: pattern)
     }
     
-    /// Projects each matching enum case of a Publisher into its associated value.
+    /// Projects each matching enum case of a Publisher into Void.
     /// - parameter case: An enum case to test each source element for a matching condition.
     /// - returns: A publisher that republishes all matching results of case.
     func capture<T: CaseAccessible>(case: T) -> Publishers.Capture<Publishers.ToType<Self, T>, Void> {

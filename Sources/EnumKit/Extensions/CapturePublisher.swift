@@ -44,7 +44,7 @@ extension Publishers {
         
         public func receive<S>(subscriber: S)
             where S : Subscriber, Failure == S.Failure, Output == S.Input {
-                return upstream.compactMap(matcher)
+                upstream.compactMap(matcher)
                     .map(transform)
                     .receive(subscriber: subscriber)
         }
@@ -71,7 +71,7 @@ extension Publishers {
         
         public func receive<S>(subscriber: S)
             where S : Subscriber, Failure == S.Failure, Output == S.Input {
-                return upstream.compactMap(matcher)
+                upstream.compactMap(matcher)
                     .flatMap(maxPublishers: maxPublishers, transform)
                     .receive(subscriber: subscriber)
         }
@@ -88,9 +88,9 @@ extension Publishers {
         
         public func receive<S>(subscriber: S)
             where S : Subscriber, Failure == S.Failure, Output == S.Input {
-                return upstream.compactMap { $0 as? Output }.receive(subscriber: subscriber)
+                upstream.compactMap { $0 as? Output }
+                    .receive(subscriber: subscriber)
         }
-
     }
 }
 
