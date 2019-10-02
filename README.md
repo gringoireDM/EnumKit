@@ -38,9 +38,15 @@ For more please read our [wiki](https://github.com/gringoireDM/EnumKit/wiki).
 
 ## Requirements
 
+### V 1.0.0
+
 * Xcode 10.2
 * Swift 5.0
 
+### V 1.1.0
+
+* Xcode 11
+* Swift 5.1
 
 ## Installation
 
@@ -53,7 +59,7 @@ EnumKit offers [cocoapods](https://cocoapods.org) and [swiftPM](https://swift.or
 use_frameworks!
 
 target 'YOUR_TARGET_NAME' do
-    pod 'EnumKit', '~> 1.0.0'
+    pod 'EnumKit', '~> 1.1.0'
 end
 ```
 
@@ -68,14 +74,14 @@ $ pod install
 Create a `Package.swift` file.
 
 ```swift
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
 let package = Package(
   name: "YourProjectName",
   dependencies: [
-    .package(url: "https://github.com/gringoireDM/EnumKit.git", from: "1.0.0")
+    .package(url: "https://github.com/gringoireDM/EnumKit.git", from: "1.1.0")
   ],
   targets: [
     .target(name: "YourProjectName", dependencies: ["EnumKit"])

@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
     s.osx.deployment_target = '10.10'
     s.name = "EnumKit"
  	s.summary = "Utility library to simplify working with enums in swift"
-	s.swift_version = '5.0'
+	s.swift_version = '5.1'
     
   	s.description  = <<-DESC
                    EnumKit is a library that gives you the ability to simply access an enum associated value, without having to use pattern matching. It also offers many utilities available to other swift types, like updatability of an associated value and transformations.
