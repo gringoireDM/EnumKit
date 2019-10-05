@@ -5,9 +5,13 @@
 //  Created by Giuseppe Lanza on 29/09/2019.
 //
 
+import Foundation
+
 #if canImport(Combine)
 import Combine
-import Foundation
+#else
+import OpenCombine
+#endif
 
 enum CombineEvents<Input, Failure> where Failure : Error {
     case next(Input)
@@ -19,7 +23,6 @@ enum CombineEvents<Input, Failure> where Failure : Error {
 extension CombineEvents: Equatable
     where Input: Equatable, Failure: Equatable { }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 final class RecordingObserver<Input, Failure>: Subscriber, Cancellable where Failure : Error {
     var subscription: Subscription?
     var events = [CombineEvents<Input, Failure>]()
@@ -55,16 +58,19 @@ final class RecordingObserver<Input, Failure>: Subscriber, Cancellable where Fai
     func cancel() { subscription?.cancel() }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
     func record(receiveCompletion: @escaping ((Subscribers.Completion<Failure>) -> Void) = { _ in },
                 receiveValue: @escaping ((Output) -> Void) = { _ in }) -> RecordingObserver<Output, Failure> {
         let recordingObs = RecordingObserver(receiveValue: receiveValue, receiveCompletion: receiveCompletion)
         
-        subscribe(on: ImmediateScheduler.shared).subscribe(recordingObs)
+        #if canImport(Combine)
+        subscribe(on: ImmediateScheduler.shared)
+            .subscribe(recordingObs)
+        #else
+        #error("OpenCombine hasn't implemented 'Publisher.SubscribeOn' yet\nComment this line if you want to test the whole library without subcribe(on:options)")
+        subscribe(recordingObs)
+        #endif
         
         return recordingObs
     }
 }
-
-#endif

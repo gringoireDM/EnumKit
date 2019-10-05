@@ -8,13 +8,14 @@
 
 #if canImport(Combine)
 import Combine
+#else
+import OpenCombine
 #endif
 
 import XCTest
 import EnumKit
 
 class CombineMapTests: XCTestCase {
-    #if canImport(Combine)
     
     let events: [CaseAccessible] = [
         MockEnum.withAnonymousPayload("100"),
@@ -26,8 +27,6 @@ class CombineMapTests: XCTestCase {
     ]
     
     func testItCanMapAnonymousEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .map(case: MockEnum.withAnonymousPayload, Int.init)
@@ -47,8 +46,6 @@ class CombineMapTests: XCTestCase {
     }
     
     func testItCanMapNamedEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .map(case: MockEnum.withNamedPayload, Int.init)
@@ -67,8 +64,6 @@ class CombineMapTests: XCTestCase {
 
     
     func testItCanMapNoAssociatedValueEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .map(case: MockEnum.noAssociatedValue) { "Frank Sinatra" }
@@ -85,8 +80,6 @@ class CombineMapTests: XCTestCase {
     }
     
     func testItCanCompactMapAnonymousEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .compactMap(case: MockEnum.withAnonymousPayload, Int.init)
@@ -105,8 +98,6 @@ class CombineMapTests: XCTestCase {
     }
     
     func testItCanCompactMapNamedEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .compactMap(case: MockEnum.withNamedPayload, Int.init)
@@ -124,8 +115,6 @@ class CombineMapTests: XCTestCase {
     }
     
     func testItCanCompactMapNoAssociatedValueEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .compactMap(case: MockEnum.noAssociatedValue) { "Frank Sinatra" }
@@ -142,8 +131,6 @@ class CombineMapTests: XCTestCase {
     }
     
     func testItCanFlatMapAnonymousEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .flatMap(case: MockEnum.withAnonymousPayload) { Just($0) }
@@ -163,8 +150,6 @@ class CombineMapTests: XCTestCase {
     }
     
     func testItCanFlatMapNamedEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .flatMap(case: MockEnum.withNamedPayload) { Just($0) }
@@ -181,8 +166,6 @@ class CombineMapTests: XCTestCase {
     }
     
     func testItCanFlatMapNoAssociatedValueEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .flatMap(case: MockEnum.noAssociatedValue) { Just("Frank Sinatra") }
@@ -197,5 +180,5 @@ class CombineMapTests: XCTestCase {
         
         XCTAssertEqual(recording.events, expected)
     }
-    #endif
+    
 }

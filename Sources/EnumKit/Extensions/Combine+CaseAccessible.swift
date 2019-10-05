@@ -7,8 +7,10 @@
 
 #if canImport(Combine)
 import Combine
+#else
+import OpenCombine
+#endif
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher where Output: CaseAccessible {
     
     /// Republishes all elements that match a provided case.
@@ -102,14 +104,12 @@ public extension Publisher where Output: CaseAccessible {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher {
     func to<T>(type: T.Type) -> Publishers.ToType<Self, T> {
-        Publishers.ToType(upstream: self, type: type)
+        return Publishers.ToType(upstream: self, type: type)
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher where Output == CaseAccessible {
     
     /// Republishes all elements that match a provided case.
@@ -202,5 +202,3 @@ public extension Publisher where Output == CaseAccessible {
             return to(type: U.self).flatMap(case: pattern, maxPublishers: maxPublishers, transform)
     }
 }
-
-#endif

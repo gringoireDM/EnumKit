@@ -7,8 +7,10 @@
 
 #if canImport(Combine)
 import Combine
+#else
+import OpenCombine
+#endif
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publishers {
     public struct Capture<Upstream, Output> : Publisher where Upstream : Publisher {
         public typealias Failure = Upstream.Failure
@@ -93,5 +95,3 @@ extension Publishers {
         }
     }
 }
-
-#endif

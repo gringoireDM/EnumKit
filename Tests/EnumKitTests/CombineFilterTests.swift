@@ -7,13 +7,14 @@
 
 #if canImport(Combine)
 import Combine
+#else
+import OpenCombine
 #endif
 
 import XCTest
 import EnumKit
 
 class CombineFilterTests: XCTestCase {
-    #if canImport(Combine)
     
     let events: [CaseAccessible] = [
         MockEnum.withAnonymousPayload("100"),
@@ -24,8 +25,6 @@ class CombineFilterTests: XCTestCase {
     ]
     
     func testItCanFilterAnonymousEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .filter(case: MockEnum.withAnonymousPayload)
@@ -44,8 +43,6 @@ class CombineFilterTests: XCTestCase {
     }
     
     func testItCanFilterNamedEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .filter(case: MockEnum.withNamedPayload)
@@ -62,8 +59,6 @@ class CombineFilterTests: XCTestCase {
     }
 
     func testItCanFilterNoAssociatedValueEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .filter(case: MockEnum.noAssociatedValue)
@@ -78,6 +73,4 @@ class CombineFilterTests: XCTestCase {
         
         XCTAssertEqual(recording.events, expected)
     }
-        
-    #endif
 }

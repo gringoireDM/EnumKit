@@ -8,13 +8,14 @@
 
 #if canImport(Combine)
 import Combine
+#else
+import OpenCombine
 #endif
 
 import XCTest
 import EnumKit
 
 class CombineCaptureTests: XCTestCase {
-    #if canImport(Combine)
     
     let events: [CaseAccessible] = [
         MockEnum.withAnonymousPayload("100"),
@@ -25,8 +26,6 @@ class CombineCaptureTests: XCTestCase {
     ]
     
     func testItCanCaptureAnonymousAssociatedValueEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .capture(case: MockEnum.withAnonymousPayload)
@@ -45,8 +44,6 @@ class CombineCaptureTests: XCTestCase {
     }
     
     func testItCanCaptureNamedAssociatedValueEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .capture(case: MockEnum.withNamedPayload)
@@ -64,8 +61,6 @@ class CombineCaptureTests: XCTestCase {
 
     
     func testItCanCaptureNoAssociatedValueEvents() {
-        guard #available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *) else { return }
-
         let publisher = PassthroughSubject<CaseAccessible, Never>()
         let recording = publisher
             .capture(case: MockEnum.noAssociatedValue)
@@ -81,6 +76,4 @@ class CombineCaptureTests: XCTestCase {
         
         XCTAssertEqual(recording.events, expected)
     }
-        
-    #endif
 }
