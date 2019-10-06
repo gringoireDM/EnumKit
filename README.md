@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Swift-5.0-orange.svg" />
+    <img src="https://img.shields.io/badge/Swift-5.1-orange.svg" />
     <a href="https://travis-ci.org/gringoireDM/EnumKit">
         <img src="https://travis-ci.org/gringoireDM/EnumKit.svg?branch=master" alt="Build Status" />
     </a>
@@ -32,7 +32,7 @@ For more please read our [wiki](https://github.com/gringoireDM/EnumKit/wiki).
 ## Usage
   * [Access an associated value](https://github.com/gringoireDM/EnumKit/wiki/Access-an-associated-value)
   * [Matching cases](https://github.com/gringoireDM/EnumKit/wiki/Matching-Cases)
-  * [Updatathing an enum value](https://github.com/gringoireDM/EnumKit/wiki/Updatathing-an-enum-value)
+  * [Updating an enum value](https://github.com/gringoireDM/EnumKit/wiki/Updating-an-enum-value)
   * [Transform associated values](https://github.com/gringoireDM/EnumKit/wiki/Transform-associated-values)
 
 
