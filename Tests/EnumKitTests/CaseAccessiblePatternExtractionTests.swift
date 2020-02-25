@@ -31,6 +31,18 @@ class CaseAccessiblePatternExtractionTests: XCTestCase {
         XCTAssertEqual(enumCase[case: MockEnum.withAnonymousPayload], expectedPayload)
     }
     
+    func testItCanExtractZeroSizedPayloads() {
+        let expected = ZeroSized()
+        let enumCase = MockEnum.zeroSized(expected)
+        XCTAssertEqual(enumCase.associatedValue(matching: MockEnum.zeroSized), expected)
+    }
+    
+    func testItCanExtractZeroSizedPayloadsThroughSubscript() {
+        let expected = ZeroSized()
+        let enumCase = MockEnum.zeroSized(expected)
+        XCTAssertEqual(enumCase[case: MockEnum.zeroSized], expected)
+    }
+    
     func testSubscriptCanReturnDefault() {
         let enumCase = MockEnum.withAnonymousPayload("David Bowie")
         XCTAssertEqual(enumCase[case: MockEnum.anInt, default: 0], 0)

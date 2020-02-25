@@ -24,6 +24,12 @@ class CaseAccessibleExtractionTests: XCTestCase {
         XCTAssertNil(enumCase.associatedValue())
     }
     
+    func testItCanExtractZeroSizedPayloads() {
+        let expected = ZeroSized()
+        let enumCase = MockEnum.zeroSized(expected)
+        XCTAssertEqual(enumCase.associatedValue(), expected)
+    }
+    
     func testItCanExtractPayloadThroughSubscript() {
         let expectedPayload = "David Bowie"
         let enumCase = MockEnum.withAnonymousPayload(expectedPayload)
@@ -38,5 +44,11 @@ class CaseAccessibleExtractionTests: XCTestCase {
     func testItCannotExtractPayloadThroughSubscript() {
         let enumCase = MockEnum.noAssociatedValue
         XCTAssertNil(enumCase[expecting: String.self])
+    }
+    
+    func testItCanExtractZeroSizedPayloadsThroughSubscript() {
+        let expected = ZeroSized()
+        let enumCase = MockEnum.zeroSized(expected)
+        XCTAssertEqual(enumCase[expecting: ZeroSized.self], expected)
     }
 }
