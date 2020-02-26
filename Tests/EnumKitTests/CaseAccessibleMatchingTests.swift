@@ -30,6 +30,36 @@ class CaseAccessibleMatchingTests: XCTestCase {
         XCTAssertFalse(enumCase.matches(case: MockEnum.withNamedPayload))
     }
     
+    func testItCanMatchOverloadingCases() {
+        let enumCase = MockEnum.overloading(24)
+        XCTAssertTrue(enumCase.matches(case: { MockEnum.overloading($0) }))
+    }
+    
+    func testItCanMatchNamedOverloadingCases() {
+        let enumCase = MockEnum.overloading(anInt: 24)
+        XCTAssertTrue(enumCase.matches(case: MockEnum.overloading(anInt:)))
+    }
+    
+    func testItCanFailMatchOverloadingCases() {
+        let enumCase = MockEnum.overloading(24)
+        XCTAssertFalse(enumCase.matches(case: MockEnum.overloading(anInt:)))
+    }
+    
+    func testItCanFailMatchNamedOverloadingCases() {
+        let enumCase = MockEnum.overloading(anInt: 24)
+        XCTAssertFalse(enumCase.matches(case: { MockEnum.overloading($0) }))
+    }
+    
+    func testItCanMatchNamedOverloadingCasesWithTuple() {
+        let enumCase = MockEnum.overloading(anInt: 24, andString: "aaa")
+        XCTAssertTrue(enumCase.matches(case: MockEnum.overloading(anInt:andString:)))
+    }
+    
+    func testItCanFailMatchNamedOverloadingCasesWithTuple() {
+        let enumCase = MockEnum.overloading(anInt: 24, andString: "aaa")
+        XCTAssertFalse(enumCase.matches(case: MockEnum.overloading(anInt:)))
+    }
+    
     func testItCanMatchNoPayloadCasesWithOperator() {
         let enumCase = MockEnum.noAssociatedValue
         XCTAssert(enumCase ~= MockEnum.noAssociatedValue)
@@ -69,5 +99,4 @@ class CaseAccessibleMatchingTests: XCTestCase {
         let enumCase = MockEnum.withAnonymousPayload("David Bowie")
         XCTAssertFalse(enumCase !~= MockEnum.withAnonymousPayload)
     }
-
 }

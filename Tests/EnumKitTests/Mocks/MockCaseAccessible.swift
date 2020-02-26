@@ -17,6 +17,10 @@ enum MockEnum: CaseAccessible, Equatable {
     case anotherInt(Int)
     case namedInt(integer: Int)
     case zeroSized(ZeroSized)
+    case overloading(Int)
+    case overloading(string: String)
+    case overloading(anInt: Int)
+    case overloading(anInt: Int, andString: String)
 }
 
 struct ZeroSized: Equatable {

@@ -43,6 +43,38 @@ class CaseAccessiblePatternExtractionTests: XCTestCase {
         XCTAssertEqual(enumCase[case: MockEnum.zeroSized], expected)
     }
     
+    func testItCanExtractPayloadOverloadingCases() {
+        let enumCase = MockEnum.overloading(24)
+        XCTAssertEqual(enumCase.associatedValue(matching: { MockEnum.overloading($0) }), 24)
+    }
+    
+    func testItCanExtractPayloadNamedOverloadingCases() {
+        let enumCase = MockEnum.overloading(anInt: 24)
+        XCTAssertEqual(enumCase.associatedValue(matching: MockEnum.overloading(anInt:)), 24)
+    }
+    
+    func testItCanFailExtractPayloadOverloadingCases() {
+        let enumCase = MockEnum.overloading(24)
+        XCTAssertNil(enumCase.associatedValue(matching: MockEnum.overloading(anInt:)))
+    }
+    
+    func testItCanFailExtractPayloadNamedOverloadingCases() {
+        let enumCase = MockEnum.overloading(anInt: 24)
+        XCTAssertNil(enumCase.associatedValue(matching: { MockEnum.overloading($0) }))
+    }
+    
+    func testItCanExtractNamedPayloadsOverloadingCasesWithTuple() {
+        let enumCase = MockEnum.overloading(anInt: 24, andString: "aaa")
+        let pair = enumCase.associatedValue(matching: MockEnum.overloading(anInt:andString:))
+        XCTAssertEqual(pair?.0, 24)
+        XCTAssertEqual(pair?.1, "aaa")
+    }
+    
+    func testItCanFailExtractNamedPayloadsOverloadingCasesWithTuple() {
+        let enumCase = MockEnum.overloading(anInt: 24, andString: "aaa")
+        XCTAssertNil(enumCase.associatedValue(matching: MockEnum.overloading(anInt:)))
+    }
+    
     func testSubscriptCanReturnDefault() {
         let enumCase = MockEnum.withAnonymousPayload("David Bowie")
         XCTAssertEqual(enumCase[case: MockEnum.anInt, default: 0], 0)
