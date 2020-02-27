@@ -16,4 +16,13 @@ enum MockEnum: CaseAccessible, Equatable {
     case anInt(Int)
     case anotherInt(Int)
     case namedInt(integer: Int)
+    case zeroSized(ZeroSized)
+    case overloading(Int)
+    case overloading(string: String)
+    case overloading(anInt: Int)
+    case overloading(anInt: Int, andString: String)
+}
+
+struct ZeroSized: Equatable {
+    static func == (lhs: ZeroSized, rhs: ZeroSized) -> Bool { true }
 }

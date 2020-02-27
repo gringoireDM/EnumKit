@@ -11,13 +11,14 @@ import EnumKit
 class CaseAccessibleSequenceTests: XCTestCase {
     let enumCases = [
         MockEnum.noAssociatedValue,
-        MockEnum.anInt(10),
-        MockEnum.withNamedPayload(payload: "David"),
-        MockEnum.withAnonymousPayload("Freddy"),
-        MockEnum.withAnonymousPayload("Mercury"),
-        MockEnum.withNamedPayload(payload: "Bowie"),
-        MockEnum.anInt(20),
-        MockEnum.anInt(30)
+        .anInt(10),
+        .withNamedPayload(payload: "David"),
+        .withAnonymousPayload("Freddy"),
+        .withAnonymousPayload("Mercury"),
+        .withNamedPayload(payload: "Bowie"),
+        .anInt(20),
+        .anInt(30),
+        .zeroSized(ZeroSized())
     ]
 
     func testItCanExtractAssociatedValues() {
@@ -68,13 +69,14 @@ class CaseAccessibleSequenceTests: XCTestCase {
     func testItCanExcludeNoAssociatedValue() {
         let result = enumCases.exclude(case: MockEnum.noAssociatedValue)
         XCTAssertEqual(result, [
-            MockEnum.anInt(10),
-            MockEnum.withNamedPayload(payload: "David"),
-            MockEnum.withAnonymousPayload("Freddy"),
-            MockEnum.withAnonymousPayload("Mercury"),
-            MockEnum.withNamedPayload(payload: "Bowie"),
-            MockEnum.anInt(20),
-            MockEnum.anInt(30)
+            .anInt(10),
+            .withNamedPayload(payload: "David"),
+            .withAnonymousPayload("Freddy"),
+            .withAnonymousPayload("Mercury"),
+            .withNamedPayload(payload: "Bowie"),
+            .anInt(20),
+            .anInt(30),
+            .zeroSized(ZeroSized())
             ])
     }
     
@@ -86,12 +88,27 @@ class CaseAccessibleSequenceTests: XCTestCase {
     func testItCanExcludeAnonymousAssociatedValue() {
         let result = enumCases.exclude(case: MockEnum.withAnonymousPayload)
         XCTAssertEqual(result, [
-            MockEnum.noAssociatedValue,
-            MockEnum.anInt(10),
-            MockEnum.withNamedPayload(payload: "David"),
-            MockEnum.withNamedPayload(payload: "Bowie"),
-            MockEnum.anInt(20),
-            MockEnum.anInt(30)
+            .noAssociatedValue,
+            .anInt(10),
+            .withNamedPayload(payload: "David"),
+            .withNamedPayload(payload: "Bowie"),
+            .anInt(20),
+            .anInt(30),
+            .zeroSized(ZeroSized())
+            ])
+    }
+    
+    func testItCanExcludeZeroSizedAssociatedValue() {
+        let result = enumCases.exclude(case: MockEnum.zeroSized)
+        XCTAssertEqual(result, [
+            .noAssociatedValue,
+            .anInt(10),
+            .withNamedPayload(payload: "David"),
+            .withAnonymousPayload("Freddy"),
+            .withAnonymousPayload("Mercury"),
+            .withNamedPayload(payload: "Bowie"),
+            .anInt(20),
+            .anInt(30)
             ])
     }
     
@@ -103,12 +120,13 @@ class CaseAccessibleSequenceTests: XCTestCase {
     func testItCanExcludeNamedAssociatedValue() {
         let result = enumCases.exclude(case: MockEnum.withNamedPayload)
         XCTAssertEqual(result, [
-            MockEnum.noAssociatedValue,
-            MockEnum.anInt(10),
-            MockEnum.withAnonymousPayload("Freddy"),
-            MockEnum.withAnonymousPayload("Mercury"),
-            MockEnum.anInt(20),
-            MockEnum.anInt(30)
+            .noAssociatedValue,
+            .anInt(10),
+            .withAnonymousPayload("Freddy"),
+            .withAnonymousPayload("Mercury"),
+            .anInt(20),
+            .anInt(30),
+            .zeroSized(ZeroSized())
             ])
     }
     

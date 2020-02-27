@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-    s.version = "1.1.0"
+    s.version = "1.1.1"
     s.ios.deployment_target = '10.0'
     s.osx.deployment_target = '10.10'
     s.name = "EnumKit"
@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
 	s.homepage = "https://www.pfrpg.net"
     s.author = { "Giuseppe Lanza" => "gringoire986@gmail.com" }
 
+    s.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-weak_framework Combine' }
     s.source = {
         :git => "https://github.com/gringoireDM/EnumKit.git",
         :tag => s.version.to_s
