@@ -20,7 +20,7 @@ public extension CaseAccessible {
     func matches(case: Self) -> Bool {
         var root = self
         var `case` = `case`
-        return memcmp(&root, &`case`, MemoryLayout<Self>.size) == 0
+        return memcmp(&root, &`case`, MemoryLayout<Self>.size) == 0 || root.label == `case`.label
     }
     
     /// Check if an enum case matches a specific pattern
